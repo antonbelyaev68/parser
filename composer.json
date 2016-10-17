@@ -1,5 +1,14 @@
 {
+    "name": "parser",
+    "license": "proprietary",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "": "src/"
+        }
+    },
     "require": {
-        "symfony/symfony": "^3.1"
+        "symfony/symfony": "^3.1",
+        "sensio/framework-extra-bundle": "^3.0"
     }
 }
