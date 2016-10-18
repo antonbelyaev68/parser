@@ -5,6 +5,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
+use App\Services\ParserMlsmatrix;
 
 class MicroController extends Controller
 {
@@ -30,7 +31,15 @@ class MicroController extends Controller
      */
     public function parseAction(Request $request)
     {
-        var_dump($request->get('zip_codes'));
+        /** @var ParserMlsmatrix $parserMlsmatrix */
+        $parserMlsmatrix = $this->get("parser.mlsmatrix");
+        $parserMlsmatrix->setZipCodes($request->get('zip_codes'));
+        $parserMlsmatrix->parse();
+
+//        $parserListsource = $this->get("parser.listsource");
+//        $parserListsource->setZipCodes($request->get('zip_codes'));
+//        $parserListsource->parse();
+
         exit;
     }
     

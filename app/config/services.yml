@@ -1,1 +1,6 @@
 services:
+    parser.mlsmatrix:
+        class: App\Services\ParserMlsmatrix
+
+    parser.listsource:
+        class: App\Services\ParserListsource

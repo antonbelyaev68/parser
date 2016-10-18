@@ -42,7 +42,7 @@ class AppKernel extends Kernel
     protected function configureContainer(ContainerBuilder $c, LoaderInterface $loader)
     {
         $loader->load(__DIR__.'/../app/config/config.yml');
-        //$loader->load(__DIR__.'/../app/config/services.yml');
+        $loader->load(__DIR__.'/../app/config/services.yml');
 
         if (isset($this->bundles['WebProfilerBundle'])) {
             $c->loadFromExtension('web_profiler', array(
