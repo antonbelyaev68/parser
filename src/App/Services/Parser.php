@@ -2,9 +2,13 @@
 
 namespace App\Services;
 
+use Behat\Mink\Session;
+
 abstract class Parser
 {
     protected $zipCodes;
+
+    /** @var Session $session */
     protected $session;
 
     /**

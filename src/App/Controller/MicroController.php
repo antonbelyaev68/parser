@@ -31,6 +31,7 @@ class MicroController extends Controller
      */
     public function parseAction(Request $request)
     {
+        //var_dump(1); exit;
         /** @var ParserMlsmatrix $parserMlsmatrix */
         $parserMlsmatrix = $this->get("parser.mlsmatrix");
         $parserMlsmatrix->setZipCodes($request->get('zip_codes'));
