@@ -26,23 +26,22 @@ class ParserMlsmatrix extends Parser
             /** @var NodeElement[] $matrixUrls */
             $matrixUrls = $page->findAll('xpath', '//div[@id="sec-nav"]/ul/li/a');
             $matrixUrls[1]->click(); // click on Matrix
+            $this->session->wait(5);
 
-
+            $names = $this->session->getWindowNames();
+            $this->session->switchToWindow($names[1]); //select new window
             $page = $this->session->getPage();
+
             $el = $page->find('named', ['content', 'click here']);
-            $el->rightClick();
-
-//            $page = $this->session->getPage();
-//            $submitForm = $page->find('named', ['id_or_name', 'samlform']);
-//            $submitForm->submit();
-            VarDumper::dump($page->getHtml()); exit;
-
+            $el->click(); //finish auth
             $page = $this->session->getPage();
+
             /** @var NodeElement[] $residentalUrls */
             $residentalUrls = $page->findAll('xpath', '//li/a');
+            $residentalUrls[9]->mouseOver(); // hover search
             $residentalUrls[10]->click(); // click on Residental
-
             $page = $this->session->getPage();
+
             /** @var NodeElement[] $checkboxes */
             $checkboxes = $page->findAll('named', ['checkbox', 'Fm45_Ctrl16_LB']);
 
@@ -51,27 +50,33 @@ class ParserMlsmatrix extends Parser
 //                VarDumper::dump($text);
 //                VarDumper::dump($checkbox->getOuterHtml());
                 if (in_array($text, [101, 1027, 1028, 1029, 1031])) {
-                    //$checkbox->click();
                     $checkbox->uncheck();
 //                    VarDumper::dump("uncheck");
                 }
                 if ($text == 104) {
                     $checkbox->check();
-                    VarDumper::dump("check");
+//                    VarDumper::dump("check");
                     $soldInput = $page->find('named', ['id_or_name', 'FmFm45_Ctrl16_104_Ctrl16_TB']);
                     $soldInput->setValue("0-180");
                 }
             }
 
+            foreach ($checkboxes as $checkbox) {
+                VarDumper::dump($checkbox->getOuterHtml());
+            }
+
             $zipCodeInput = $page->find('named', ['id_or_name', 'Fm45_Ctrl68_TextBox']);
             $zipCodeInput->setValue("30236");
 
-            $this->session->executeScript('__doPostBack(\'m_ucSearchButtons$m_lbSearch\',\'\')');
-//            $submitLink = $page->find('named', ['id_or_name', 'm_ucSearchButtons_m_lbSearch']);
-//            $submitLink->click();
+            $page = $this->session->getPage();
+            echo $page->getHtml(); exit;
+
+//            $this->session->executeScript('__doPostBack(\'m_ucSearchButtons$m_lbSearch\',\'\')');
+            $submitLink = $page->find('named', ['id_or_name', 'm_ucSearchButtons_m_lbSearch']);
+            $submitLink->click();
 
             $page = $this->session->getPage();
-            VarDumper::dump($page->getHtml()); exit;
+            echo $page->getHtml(); exit;
             #var_dump($page->getHtml());
 
         } else {
@@ -83,11 +88,10 @@ class ParserMlsmatrix extends Parser
 
     protected function auth()
     {
-        $driver = new Selenium2Driver('chrome', null, 'http://192.168.99.100:4444/wd/hub');
-//        $this->session = new Session(new GoutteDriver());
+        $driver = new Selenium2Driver('chrome', null, 'http://192.168.99.100:32794/wd/hub');
+//        $driver = new Selenium2Driver('firefox', null, 'http://192.168.99.100:32778/wd/hub');
         $this->session = new Session($driver);
         $this->session->start();
-        sleep(10);
 
         $this->session->visit($this->urlLogin);
         $page = $this->session->getPage();
@@ -102,21 +106,19 @@ class ParserMlsmatrix extends Parser
         $loginField->setValue($this->login);
         $passwordField->setValue($this->password);
 
-//        $loginButtons = $registerForm->findAll('xpath', "//input");
-//        $loginButton = array_pop($loginButtons);
-//        $loginButton->rightClick();
-//        VarDumper::dump(get_class($loginButton)); exit;
+        $loginButtons = $registerForm->findAll('xpath', "//input");
+        $loginButton = array_pop($loginButtons);
+        $loginButton->click();
 
-        $registerForm->submit();
+//        $registerForm->submit();
 
         $page = $this->session->getPage();
-//        $el = $page->find('named', ['content', 'Logout']);
+        $el = $page->find('named', ['content', 'Logout']);
 
-        return $page;
-//        if ($el instanceof NodeElement) {
-//            return $page;
-//        } else {
-//            return false;
-//        }
+        if ($el instanceof NodeElement) {
+            return $page;
+        } else {
+            return false;
+        }
     }
 }
