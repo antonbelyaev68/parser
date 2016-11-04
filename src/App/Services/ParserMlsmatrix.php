@@ -30,66 +30,73 @@ class ParserMlsmatrix extends Parser
 
             $names = $this->session->getWindowNames();
             $this->session->switchToWindow($names[1]); //select new window
-            $page = $this->session->getPage();
 
             $el = $page->find('named', ['content', 'click here']);
             $el->click(); //finish auth
-            $page = $this->session->getPage();
 
             /** @var NodeElement[] $residentalUrls */
             $residentalUrls = $page->findAll('xpath', '//li/a');
             $residentalUrls[9]->mouseOver(); // hover search
             $residentalUrls[10]->click(); // click on Residental
-            $page = $this->session->getPage();
 
             /** @var NodeElement[] $checkboxes */
             $checkboxes = $page->findAll('named', ['checkbox', 'Fm45_Ctrl16_LB']);
 
             foreach ($checkboxes as $checkbox) {
                 $text = preg_replace("#\D#", "", explode(" ", $checkbox->getOuterHtml())[3]);
-//                VarDumper::dump($text);
 //                VarDumper::dump($checkbox->getOuterHtml());
                 if (in_array($text, [101, 1027, 1028, 1029, 1031])) {
                     $checkbox->uncheck();
-//                    VarDumper::dump("uncheck");
                 }
                 if ($text == 104) {
                     $checkbox->check();
-//                    VarDumper::dump("check");
                     $soldInput = $page->find('named', ['id_or_name', 'FmFm45_Ctrl16_104_Ctrl16_TB']);
                     $soldInput->setValue("0-180");
                 }
             }
 
-            foreach ($checkboxes as $checkbox) {
-                VarDumper::dump($checkbox->getOuterHtml());
+            $zipCodeInput = $page->find('named', ['id_or_name', 'Fm45_Ctrl68_TextBox']);
+            $zipCodeInput->setValue($this->zipCode);
+
+            $page->clickLink('m_ucSearchButtons_m_lbSearch');
+
+            $stats = null;
+            while (empty($stats)) {
+                $stats = $page->find('named', ['id_or_name', 'm_btnStats']);
+                $this->session->wait(1);
             }
 
-            $zipCodeInput = $page->find('named', ['id_or_name', 'Fm45_Ctrl68_TextBox']);
-            $zipCodeInput->setValue("30236");
+            /*
+            file_put_contents("scrin.png", $this->session->getScreenshot());
+            $this->session->wait(1);
+            */
 
-            $page = $this->session->getPage();
-            echo $page->getHtml(); exit;
+            $page->clickLink('m_btnStats');
+            #file_put_contents("1.png", $this->session->getScreenshot());
+            $page->clickLink('m_lbOldStats');
+            #file_put_contents("2.png", $this->session->getScreenshot());
 
-//            $this->session->executeScript('__doPostBack(\'m_ucSearchButtons$m_lbSearch\',\'\')');
-            $submitLink = $page->find('named', ['id_or_name', 'm_ucSearchButtons_m_lbSearch']);
-            $submitLink->click();
-
-            $page = $this->session->getPage();
-            echo $page->getHtml(); exit;
-            #var_dump($page->getHtml());
-
+            $price = $dom = null;
+            $tds = $page->findAll('xpath', '//td');
+            foreach ($tds as $key => $td) {
+                if ($key == 70) {
+                    $price = $td->getText(); #median price
+                    $price = preg_replace("#[^0-9]#", "", $price);
+                }
+                if ($key == 65) {
+                    $dom = $td->getText(); #avg dom
+                }
+            }
+            return ['price' => $price, 'dom' => $dom];
         } else {
             throw new \Exception('Authorizing false');
         }
 
-        exit;
     }
 
     protected function auth()
     {
-        $driver = new Selenium2Driver('chrome', null, 'http://192.168.99.100:32794/wd/hub');
-//        $driver = new Selenium2Driver('firefox', null, 'http://192.168.99.100:32778/wd/hub');
+        $driver = new Selenium2Driver('chrome', null, 'http://192.168.99.100:32795/wd/hub');
         $this->session = new Session($driver);
         $this->session->start();
 
@@ -110,9 +117,6 @@ class ParserMlsmatrix extends Parser
         $loginButton = array_pop($loginButtons);
         $loginButton->click();
 
-//        $registerForm->submit();
-
-        $page = $this->session->getPage();
         $el = $page->find('named', ['content', 'Logout']);
 
         if ($el instanceof NodeElement) {

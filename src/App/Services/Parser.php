@@ -6,7 +6,7 @@ use Behat\Mink\Session;
 
 abstract class Parser
 {
-    protected $zipCodes;
+    protected $zipCode;
 
     /** @var Session $session */
     protected $session;
@@ -14,17 +14,17 @@ abstract class Parser
     /**
      * @return mixed
      */
-    public function getZipCodes()
+    public function getZipCode()
     {
-        return $this->zipCodes;
+        return $this->zipCode;
     }
 
     /**
      * @param mixed $zipCodes
      */
-    public function setZipCodes($zipCodes)
+    public function setZipCode($zipCode)
     {
-        $this->zipCodes = $zipCodes;
+        $this->zipCode = $zipCode;
     }
 
     abstract protected function parse();

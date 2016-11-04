@@ -31,16 +31,22 @@ class MicroController extends Controller
      */
     public function parseAction(Request $request)
     {
-        //var_dump(1); exit;
         /** @var ParserMlsmatrix $parserMlsmatrix */
         $parserMlsmatrix = $this->get("parser.mlsmatrix");
-        $parserMlsmatrix->setZipCodes($request->get('zip_codes'));
-        $parserMlsmatrix->parse();
+        /** @var ParserListsource $parserListsource */
+        $parserListsource = $this->get("parser.listsource");
 
-//        $parserListsource = $this->get("parser.listsource");
-//        $parserListsource->setZipCodes($request->get('zip_codes'));
-//        $parserListsource->parse();
+        $codes = $request->get('zip_codes');
+        $codes = str_replace(" ", "", $codes);
+        $codes = explode(",", $codes);
 
+        foreach ($codes as $code) {
+            #$parserMlsmatrix->setZipCode($code);
+            #$matrixData = $parserMlsmatrix->parse();
+
+            $parserListsource->setZipCode($code);
+            $parserListsource->parse();
+        }
         exit;
     }
     
