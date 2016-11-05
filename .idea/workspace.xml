@@ -2,10 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e18891a7-4e7a-4fd7-a845-c2b6226c5c8b" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/App/Controller/MicroController.php" afterPath="$PROJECT_DIR$/src/App/Controller/MicroController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/App/Services/Parser.php" afterPath="$PROJECT_DIR$/src/App/Services/Parser.php" />
+      <change type="DELETED" beforePath="D:\OpenServer\domains\parser\web\scrin.png" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/App/Services/ParserListsource.php" afterPath="$PROJECT_DIR$/src/App/Services/ParserListsource.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/App/Services/ParserMlsmatrix.php" afterPath="$PROJECT_DIR$/src/App/Services/ParserMlsmatrix.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/parser.iml" afterPath="$PROJECT_DIR$/.idea/parser.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -32,8 +30,8 @@
       <file leaf-file-name="ParserMlsmatrix.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/App/Services/ParserMlsmatrix.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-19.76923">
-              <caret line="108" column="9" selection-start-line="108" selection-start-column="9" selection-end-line="108" selection-end-column="9" />
+            <state vertical-scroll-proportion="-4.076923">
+              <caret line="36" column="32" selection-start-line="36" selection-start-column="21" selection-end-line="36" selection-end-column="32" />
               <folding>
                 <element signature="e#32#56#0#PHP" expanded="true" />
               </folding>
@@ -41,11 +39,21 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="NodeElement.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/vendor/behat/mink/src/Element/NodeElement.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-80.57692">
+              <caret line="211" column="16" selection-start-line="211" selection-start-column="16" selection-end-line="211" selection-end-column="16" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="ParserListsource.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/App/Services/ParserListsource.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.65471923">
-              <caret line="65" column="0" selection-start-line="65" selection-start-column="0" selection-end-line="65" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.6344086">
+              <caret line="163" column="0" selection-start-line="163" selection-start-column="0" selection-end-line="163" selection-end-column="0" />
               <folding>
                 <element signature="e#32#56#0#PHP" expanded="true" />
               </folding>
@@ -56,7 +64,7 @@
       <file leaf-file-name="MicroController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/App/Controller/MicroController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-21.73077">
+            <state vertical-scroll-proportion="-19.115385">
               <caret line="38" column="44" selection-start-line="38" selection-start-column="44" selection-end-line="38" selection-end-column="44" />
               <folding>
                 <marker date="1478285559518" expanded="true" signature="444:711" placeholder="..." />
@@ -70,7 +78,7 @@
       <file leaf-file-name="Parser.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/App/Services/Parser.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-17.0">
+            <state vertical-scroll-proportion="0.0">
               <caret line="26" column="22" selection-start-line="26" selection-start-column="22" selection-end-line="26" selection-end-column="22" />
               <folding />
             </state>
@@ -198,8 +206,8 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
       <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -291,6 +299,38 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/App/Services/ParserMlsmatrix.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="108" column="9" selection-start-line="108" selection-start-column="9" selection-end-line="108" selection-end-column="9" />
+          <folding>
+            <element signature="e#32#56#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/App/Services/ParserListsource.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="65" column="0" selection-start-line="65" selection-start-column="0" selection-end-line="65" selection-end-column="0" />
+          <folding>
+            <element signature="e#32#56#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/App/Controller/MicroController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="38" column="44" selection-start-line="38" selection-start-column="44" selection-end-line="38" selection-end-column="44" />
+          <folding>
+            <marker date="1478285559518" expanded="true" signature="444:711" placeholder="..." />
+            <marker date="1478285559518" expanded="true" signature="463:691" placeholder="..." />
+            <marker date="1478285559518" expanded="true" signature="516:671" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/App/Services/ParserMlsmatrix.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -453,7 +493,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.5459976">
           <caret line="110" column="52" selection-start-line="110" selection-start-column="52" selection-end-line="110" selection-end-column="52" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -475,33 +514,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/App/Services/Parser.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-17.0">
+        <state vertical-scroll-proportion="0.0">
           <caret line="26" column="22" selection-start-line="26" selection-start-column="22" selection-end-line="26" selection-end-column="22" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/behat/mink/src/Element/NodeElement.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.36320192">
-          <caret line="102" column="23" selection-start-line="102" selection-start-column="20" selection-end-line="102" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/App/Services/ParserMlsmatrix.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-19.76923">
-          <caret line="108" column="9" selection-start-line="108" selection-start-column="9" selection-end-line="108" selection-end-column="9" />
-          <folding>
-            <element signature="e#32#56#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/App/Controller/MicroController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-21.73077">
+        <state vertical-scroll-proportion="-19.115385">
           <caret line="38" column="44" selection-start-line="38" selection-start-column="44" selection-end-line="38" selection-end-column="44" />
           <folding>
             <marker date="1478285559518" expanded="true" signature="444:711" placeholder="..." />
@@ -511,10 +532,28 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/behat/mink/src/Element/NodeElement.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-80.57692">
+          <caret line="211" column="16" selection-start-line="211" selection-start-column="16" selection-end-line="211" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/App/Services/ParserMlsmatrix.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-4.076923">
+          <caret line="36" column="32" selection-start-line="36" selection-start-column="21" selection-end-line="36" selection-end-column="32" />
+          <folding>
+            <element signature="e#32#56#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/App/Services/ParserListsource.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.65471923">
-          <caret line="65" column="0" selection-start-line="65" selection-start-column="0" selection-end-line="65" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.6344086">
+          <caret line="163" column="0" selection-start-line="163" selection-start-column="0" selection-end-line="163" selection-end-column="0" />
           <folding>
             <element signature="e#32#56#0#PHP" expanded="true" />
           </folding>
