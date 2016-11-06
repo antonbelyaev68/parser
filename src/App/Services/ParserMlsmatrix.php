@@ -87,7 +87,7 @@ class ParserMlsmatrix extends Parser
                     $dom = $td->getText(); #avg dom
                 }
             }
-            return ['price' => $price, 'dom' => $dom];
+            return ['p' => $price, 'n' => $dom];
         } else {
             throw new \Exception('Authorizing false');
         }

@@ -10,6 +10,7 @@ use Behat\Mink\Driver\Selenium2Driver;
 use Behat\Mink\Driver\Goutte\Client as GoutteClient;
 use Behat\Mink\Element\NodeElement;
 use Symfony\Component\VarDumper\VarDumper;
+use WebDriver\Exception;
 
 
 class ParserListsource extends Parser
@@ -18,7 +19,7 @@ class ParserListsource extends Parser
 
     public function parse()
     {
-        $driver = new Selenium2Driver('chrome', null, 'http://192.168.99.100:32777/wd/hub');
+        $driver = new Selenium2Driver('chrome', null, 'http://192.168.99.100:32786/wd/hub');
         $this->session = new Session($driver);
         $this->session->start();
         $this->session->visit($this->url);
@@ -32,60 +33,35 @@ class ParserListsource extends Parser
             }
         }
 
-        $locator = null;
-        while (empty($locator)) { // working javascript
-            $locator = $page->find('named', ['id_or_name', 'locator']);
-            $this->session->wait(1);
-        }
-
+        $locator = $this->waitUntilExist($page, 'locator'); // working javascript
         $locator->selectOption("ZIP_CODE");
 
-        $zipTextArea = null;
-        while (empty($zipTextArea)) { // working javascript
-            $zipTextArea= $page->find('named', ['id_or_name', 'zipTextArea']);
-            $this->session->wait(1);
-        }
-
+        $zipTextArea = $this->waitUntilExist($page, 'zipTextArea'); // working javascript
         $zipTextArea->setValue($this->zipCode);
 
         $button = $page->find('xpath', '//button');
         $button->click(); // add zip code
 
-        $js = null;
-        while (empty($js)) { // working javascript
-            $js= $page->find('named', ['id_or_name', 'CRITERIA_ZIP_CODE_'.$this->zipCode]);
-            $this->session->wait(1);
-        }
+        $this->waitUntilExist($page, 'CRITERIA_ZIP_CODE_'.$this->zipCode); // working javascript
 
         $propertyLink = $page->find('named', ['id_or_name', 'img_PROPERTY']);
         $propertyLink->click(); // click property in left menu
         $this->session->wait(1);
 
-        $propertyLink = $page->find('named', ['id_or_name', 'PROPERTY_PAGE_IMG']);
-        $propertyLink->click(); // click tab property
+        $page->find('named', ['id_or_name', 'PROPERTY_PAGE_IMG'])->click(); // click tab property
         $this->session->wait(1);
 
-        $criteria = $page->find('named', ['id_or_name', 'locator_prop']);
-        $criteria->selectOption("PROPERTY_TYPE");
+        $page->find('named', ['id_or_name', 'locator_prop'])->selectOption("PROPERTY_TYPE");
 
-        $locatorAvailableList_prop = null;
-        while (empty($locatorAvailableList_prop)) { // working javascript
-            $locatorAvailableList_prop = $page->find('named', ['id_or_name', 'locatorAvailableList_prop']);
-            $this->session->wait(1);
-        }
+        $locatorAvailableList_prop = $this->waitUntilExist($page, 'locatorAvailableList_prop'); // working javascript
         $this->session->wait(5);
+        $this->scrin(1);
+        $locatorAvailableList_prop->selectOption(16, true);
 
-        file_put_contents("scrin.png", $this->session->getScreenshot());
-        VarDumper::dump($locatorAvailableList_prop->getOuterHtml());
+        $page->find('named', ['id_or_name', 'prop_add'])->click();
+        $this->session->wait(5);
 
         $count = $this->parceCount($page);
-
-        $locatorAvailableList_prop->selectOption(16, true);
-        $prop_add = $page->find('named', ['id_or_name', 'prop_add']);
-        $prop_add->click();
-        $this->session->wait(5);
-
-
         $countNew = $count;
         while ($count == $countNew) { // working javascript
             $countNew = $this->parceCount($page);
@@ -100,48 +76,109 @@ class ParserListsource extends Parser
             $countNewNew = $this->parceCount($page);
         }
 
-        $result['property_count'] = $countNewNew; //F in excel
+        $result['f'] = $countNewNew; //F in excel
 
-        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-        $foreClosureLink = $page->find('named', ['id_or_name', 'FORECLOSURE_PAGE_IMG']);
-        $foreClosureLink->click();
+        $foreClosureLink = $page->find('named', ['id_or_name', 'FORECLOSURE_PAGE_IMG'])->click();
         $this->session->wait(1);
+
+        $foreClosureSelect = $page->find('named', ['id_or_name', 'locator_foreclosure'])->selectOption('FORE_D_PUB_DT'); // select recent added date
+
+        $this->waitUntilExist($page, 'last6_FORE_D_PUB_DT'); // working javascript
+
+        $this->session->executeScript("document.getElementById('last6_FORE_D_PUB_DT').click()");
+        $this->waitUntilDisabled($foreClosureSelect);
+
+        $page->find('named', ['id_or_name', 'mort_add_FORE_D_PUB_DT'])->click();
+
+        $dateInputFromValue = $page->find('named', ['id_or_name', 'fromValue_FORE_D_PUB_DT'])->getValue();
+        $dateInputToValue = $page->find('named', ['id_or_name', 'toValue_FORE_D_PUB_DT'])->getValue();
+
+        $this->waitUntilExist($page, 'CRITERIA_FORE_D_PUB_DT_'.$dateInputFromValue.'-'.$dateInputToValue); // working javascript
+
+        $count = $page->find('named', ['id_or_name', 'td_0']);
+        $result['h'] = $count->getText();
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        $this->scrin(3);
+        $bankOwned = $page->find('named', ['id_or_name', 'foreClosurePosition']);
+        $bankOwned->selectOption('BANKOWNED_FORECLOSURE');
 
         $foreClosureSelect = $page->find('named', ['id_or_name', 'locator_foreclosure']);
-        $foreClosureSelect->selectOption('FORE_D_PUB_DT'); // select recent added date
+        $this->waitUntilDisabled($foreClosureSelect);
 
-        $last6month = null;
-        while (empty($last6month)) { // working javascript
-            $last6month= $page->find('named', ['id_or_name', 'last6_FORE_D_PUB_DT']);
-            $this->session->wait(1);
-        }
+        $foreClosureSelect->selectOption('FORE_R_PUB_DT'); // select recent added date
 
-        $last6month->click();
+        $this->waitUntilExist($page, 'last6_FORE_R_PUB_DT'); // working javascript
+
+        $this->session->executeScript("document.getElementById('last6_FORE_R_PUB_DT').click()")->click();
+        $this->waitUntilDisabled($foreClosureSelect);
+
+        $page->find('named', ['id_or_name', 'mort_add_FORE_R_PUB_DT']);
+
+        $dateInputFromValue = $page->find('named', ['id_or_name', 'fromValue_FORE_R_PUB_DT'])->getValue();
+        $dateInputToValue = $page->find('named', ['id_or_name', 'toValue_FORE_R_PUB_DT'])->getValue();
+        $this->scrin(5);
+        $this->waitUntilExist($page, 'CRITERIA_FORE_R_PUB_DT_'.$dateInputFromValue.'-'.$dateInputToValue); // working javascript
+
+        $td0 = $page->find('named', ['id_or_name', 'td_0']);
+        $td1 = $page->find('named', ['id_or_name', 'td_1']);
+        $result['k'] = $td0->getText().$td1->getText();
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        $this->scrin(6);
+        $default = $page->find('named', ['id_or_name', 'foreClosurePosition']);
+        $default->selectOption('DEFAULT_FORECLOSURE');
+
+        $foreClosureSelect = $page->find('named', ['id_or_name', 'locator_foreclosure']);
+        $this->waitUntilDisabled($foreClosureSelect);
+
+        $foreClosureLink = $page->find('named', ['id_or_name', 'OPTIONS_PAGE_IMG'])->click();
         $this->session->wait(1);
 
-        $addButton = $page->find('named', ['id_or_name', 'mort_add_FORE_D_PUB_DT']);
-        $addButton->click();
+        $ownerOccupiedStatus = $page->find('named', ['id_or_name', 'ownerOption']);
+        $ownerOccupiedStatus->selectOption('OPT_EXCLUDE_OWNER_OCCUPIED');
 
-        $dateInputFrom = $page->find('named', ['id_or_name', 'fromValue_FORE_D_PUB_DT']);
-        $dateInputFromValue = $dateInputFrom->getValue();
-        $dateInputTo = $page->find('named', ['id_or_name', 'toValue_FORE_D_PUB_DT']);
-        $dateInputToValue = $dateInputTo->getValue();
+        $this->waitUntilExist($page, 'CRITERIA_OWNER-OCCUPIED'); // working javascript
 
-        $js = null;
-        while (empty($js)) { // working javascript
-            $js= $page->find('named', ['id_or_name', 'CRITERIA_FORE_D_PUB_DT_'.$dateInputFromValue.'-'.$dateInputToValue]);
-            $this->session->wait(1);
-        }
+        $criteria = $page->find('named', ['id_or_name', 'locator_prop']);
+        $this->scrin(7);
+        $criteria->selectOption("EQUITY_PCT");
 
-        file_put_contents("scrin.png", $this->session->getScreenshot());
-        VarDumper::dump($js->getOuterHtml());
+        $this->waitUntilExist($page, 'fromValue_prop'); // working javascript
+
+        $page->find('named', ['id_or_name', 'fromValue_prop'])->setValue(99);
+        $page->find('named', ['id_or_name', 'toValue_prop'])->setValue(100);
+        $page->find('named', ['id_or_name', 'addButton_prop'])->click();
+
+        $this->waitUntilExist($page, 'CRITERIA_EQUITY_PCT'); // working javascript
+
+        $page->find('named', ['id_or_name', 'locator_prop'])->selectOption('LAST_SALE_DATE');
+
+        $this->waitUntilExist($page, 'selBox_LAST_SALE_DATE'); // working javascript
+
+        $this->session->executeScript("document.getElementById('last6_LAST_SALE_DATE').click()");
+        $page->clickLink('prop_add');
+
+        $this->waitUntilExist($page, 'CRITERIA_LAST_SALE_DATE'); // working javascript
+
+        $count = $page->find('named', ['id_or_name', 'td_0']);
+        $result['c'] = $count->getText();
+
+        file_put_contents("scrin!!!.png", $this->session->getScreenshot());
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        VarDumper::dump($result);
 
         exit;
 
-        VarDumper::dump($key);
         VarDumper::dump($a->getXpath());
         VarDumper::dump($a->getOuterHtml());
+        file_put_contents("scrin.png", $this->session->getScreenshot());
+        VarDumper::dump($locatorAvailableList_prop->getOuterHtml());
     }
 
     private function parceCount($page)
@@ -165,12 +202,15 @@ class ParserListsource extends Parser
     private function getTextValue($sing)
     {
         if ($sing instanceof NodeElement) {
-            $val = $sing->getText();
+            try {
+                $val = $sing->getText();
+            } catch (Exception $e) {
+                $val = 0;
+            }
+
         } else {
             $val = 0;
         }
         return $val;
     }
-
-
 }
