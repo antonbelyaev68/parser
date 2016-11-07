@@ -41,10 +41,11 @@ class MicroController extends Controller
         $codes = explode(",", $codes);
 
         foreach ($codes as $code) {
-            #$parserMlsmatrix->setZipCode($code);
-            #$matrixData = $parserMlsmatrix->parse();
+            $parserMlsmatrix->setZipCode($code);
+            $matrixData = $parserMlsmatrix->parse();
 
             $parserListsource->setZipCode($code);
+            $parserListsource->setMatrixResult($matrixData);
             $parserListsource->parse();
         }
         exit;

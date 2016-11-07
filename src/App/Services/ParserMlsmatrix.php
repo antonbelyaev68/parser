@@ -96,10 +96,7 @@ class ParserMlsmatrix extends Parser
 
     protected function auth()
     {
-        $driver = new Selenium2Driver('chrome', null, 'http://192.168.99.100:32795/wd/hub');
-        $this->session = new Session($driver);
-        $this->session->start();
-
+        $this->createSession();
         $this->session->visit($this->urlLogin);
         $page = $this->session->getPage();
 
