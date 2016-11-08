@@ -15,6 +15,7 @@ class ParserMlsmatrix extends Parser
 {
     protected $url = '';
     protected $urlLogin = 'https://www.fmls.com/MemberLogin/login.cfm';
+    #protected $urlLogin = 'https://www.fmls.com/pub/LoginFail.cfm';
     protected $login = 'rencesmi';
     protected $password = '878526';
 
@@ -44,7 +45,6 @@ class ParserMlsmatrix extends Parser
 
             foreach ($checkboxes as $checkbox) {
                 $text = preg_replace("#\D#", "", explode(" ", $checkbox->getOuterHtml())[3]);
-//                VarDumper::dump($checkbox->getOuterHtml());
                 if (in_array($text, [101, 1027, 1028, 1029, 1031])) {
                     $checkbox->uncheck();
                 }
@@ -66,15 +66,8 @@ class ParserMlsmatrix extends Parser
                 $this->session->wait(1);
             }
 
-            /*
-            file_put_contents("scrin.png", $this->session->getScreenshot());
-            $this->session->wait(1);
-            */
-
             $page->clickLink('m_btnStats');
-            #file_put_contents("1.png", $this->session->getScreenshot());
             $page->clickLink('m_lbOldStats');
-            #file_put_contents("2.png", $this->session->getScreenshot());
 
             $price = $dom = null;
             $tds = $page->findAll('xpath', '//td');

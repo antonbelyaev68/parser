@@ -23,8 +23,8 @@ class ParserListsource extends Parser
         $this->session->visit($this->url);
         $page = $this->session->getPage();
 
-        $result['p'] = $this->matrixResult['p'];
-        $result['n'] = $this->matrixResult['n'];
+        $result['P'] = $this->matrixResult['p'];
+        $result['N'] = $this->matrixResult['n'];
 
         $as = $page->findAll('xpath', '//a');
 
@@ -59,14 +59,21 @@ class ParserListsource extends Parser
         $locatorAvailableList_prop->selectOption(16, true);
 
         $page->find('named', ['id_or_name', 'prop_add'])->click();
-        $this->session->wait(5);
+        $this->waitUntilDisabled($page->find('named', ['id_or_name', 'locator_prop']));
+        $this->scrin("1-1");
 
         $count = $this->parceCount($page);
         $countNew = $count;
+        $i = 1;
         while ($count == $countNew) { // working javascript
+            if ($i == 10) {
+                break;
+            }
             $countNew = $this->parceCount($page);
             $this->session->wait(5);
+            $i++;
         }
+        $this->scrin("1-2");
 
         $countNewNew = 0;
         $countOldOld = 1;
@@ -75,8 +82,9 @@ class ParserListsource extends Parser
             $this->session->wait(5);
             $countNewNew = $this->parceCount($page);
         }
+        $this->scrin("1-3");
 
-        $result['f'] = $countNewNew; //F in excel
+        $result['F'] = $countNewNew; //F in excel
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         $page->find('named', ['id_or_name', 'FORECLOSURE_PAGE_IMG'])->click();
@@ -96,7 +104,7 @@ class ParserListsource extends Parser
         $dateInputToValue = $page->find('named', ['id_or_name', 'toValue_FORE_D_PUB_DT'])->getValue();
         $this->waitUntilExist($page, 'CRITERIA_FORE_D_PUB_DT_'.$dateInputFromValue.'-'.$dateInputToValue); // working javascript
 
-        $result['h'] = $this->parceCount($page);
+        $result['H'] = $this->parceCount($page);
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         $this->scrin(3);
         $bankOwned = $page->find('named', ['id_or_name', 'foreClosurePosition']);
@@ -118,7 +126,7 @@ class ParserListsource extends Parser
         $this->waitUntilExist($page, 'CRITERIA_FORE_R_PUB_DT_'.$dateInputFromValue.'-'.$dateInputToValue); // working javascript
 
         $this->scrin("5-1");
-        $result['k'] = $this->parceCount($page);
+        $result['K'] = $this->parceCount($page);
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         $this->scrin(6);
         $default = $page->find('named', ['id_or_name', 'foreClosurePosition']);
@@ -177,7 +185,7 @@ class ParserListsource extends Parser
         $this->waitUntilExist($page, 'CRITERIA_LAST_SALE_DATE_'.$dateInputFromValue.'-'.$dateInputToValue); // working javascript
         $this->scrin(11);
 
-        $result['c'] = $this->parceCount($page);
+        $result['C'] = $this->parceCount($page);
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         $this->removeCriteria($page, 'DEL_ID_CRITERIA_EQUITY_PCT_99 to 100 %');
         $this->scrin(12);
@@ -215,66 +223,95 @@ class ParserListsource extends Parser
         $criteria->selectOption("CURRENT_HOME_VALUE");
         $this->waitUntilDisabled($locator_prop);
 
+        $this->scrin('17-1');
         $page->find('named', ['id_or_name', 'fromValue_prop'])->setValue(1);
-        $page->find('named', ['id_or_name', 'toValue_prop'])->setValue($result['p']);
+        $page->find('named', ['id_or_name', 'toValue_prop'])->setValue($result['P']);
+        $this->scrin('17-2');
         $page->find('named', ['id_or_name', 'addButton_prop'])->click();
         $this->waitUntilDisabled($locator_prop); // working javascript
 
         $this->scrin(18);
-        $result['r'] = $this->parceCount($page);
+        $result['R'] = $this->parceCount($page);
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         $priceSelect = $page->find('named', ['id_or_name', 'locatorSelectedList_prop']);
-        $priceSelect->selectOption("1-".$result['p'], true);
+        $priceSelect->selectOption("1-".$result['P'], true);
         $page->find('named', ['id_or_name', 'prop_remove'])->click();
         $this->waitUntilDisabled($locator_prop);
         $this->scrin(19);
 
-        $newPrice = round($result['p']*0.33);
+        $newPrice = round($result['P']*0.33);
         $page->find('named', ['id_or_name', 'fromValue_prop'])->setValue(1);
         $page->find('named', ['id_or_name', 'toValue_prop'])->setValue($newPrice);
         $page->find('named', ['id_or_name', 'addButton_prop'])->click();
         $this->waitUntilDisabled($locator_prop); // working javascript
-
         $this->scrin(20);
+        $result['U'] = $this->parceCount($page);
+
+        $priceSelect = $page->find('named', ['id_or_name', 'locatorSelectedList_prop']);
+        $priceSelect->selectOption("1-".$newPrice, true);
+        $page->find('named', ['id_or_name', 'prop_remove'])->click();
+        $this->waitUntilDisabled($locator_prop);
+        $this->scrin(21);
+
+        $newPrice1 = $newPrice*2;
+        $page->find('named', ['id_or_name', 'fromValue_prop'])->setValue($newPrice);
+        $page->find('named', ['id_or_name', 'toValue_prop'])->setValue($newPrice1);
+        $page->find('named', ['id_or_name', 'addButton_prop'])->click();
+        $this->waitUntilDisabled($locator_prop); // working javascript
+        $this->scrin(22);
+        $result['V'] = $this->parceCount($page);
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         $this->scrin("scrin!!!");
-        VarDumper::dump($result);
+        #VarDumper::dump($result);
 
-        exit;
-
-        VarDumper::dump($a->getXpath());
-        VarDumper::dump($a->getOuterHtml());
-        file_put_contents("scrin.png", $this->session->getScreenshot());
-        VarDumper::dump($locatorAvailableList_prop->getOuterHtml());
+        return $result;
+        #exit;
+        #VarDumper::dump($a->getXpath());
+        #VarDumper::dump($a->getOuterHtml());
     }
 
     private function parceCount($page)
     {
         $result = [];
         $sing1 = $page->find('named', ['id_or_name', 'td_0']);
-        $result[] = $this->getTextValue($sing1);
+        if ($sing1) {
+            $result[] = $this->getTextValue($sing1);
+        }
 
         $sing2 = $page->find('named', ['id_or_name', 'td_1']);
-        $result[] = $this->getTextValue($sing2);
+        if ($sing2) {
+            $result[] = $this->getTextValue($sing2);
+        }
 
         $sing3 = $page->find('named', ['id_or_name', 'td_2']);
-        $result[] = $sing3->getText();
+        if ($sing3) {
+            $result[] = $sing3->getText();
+        }
 
         $sing4 = $page->find('named', ['id_or_name', 'td_3']);
-        $result[] = $this->getTextValue($sing4);
+        if ($sing4) {
+            $result[] = $this->getTextValue($sing4);
+        }
 
         $sing5 = $page->find('named', ['id_or_name', 'td_4']);
-        $result[] = $this->getTextValue($sing5);
+        if ($sing5) {
+            $result[] = $this->getTextValue($sing5);
+        }
 
         $sing6 = $page->find('named', ['id_or_name', 'td_5']);
-        $result[] = $this->getTextValue($sing6);
+        if ($sing6) {
+            $result[] = $this->getTextValue($sing6);
+        }
 
         $sing7 = $page->find('named', ['id_or_name', 'td_6']);
-        $result[] = $this->getTextValue($sing7);
+        if ($sing7) {
+            $result[] = $this->getTextValue($sing7);
+        }
 
         $out = '';
         foreach ($result as $res) {
-            if ($res) {
+            if ($res && preg_match("#[0-9]+#", $res)) {
                 $out .= $res;
             }
         }

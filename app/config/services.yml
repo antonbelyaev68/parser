@@ -4,3 +4,6 @@ services:
 
     parser.listsource:
         class: App\Services\ParserListsource
+
+    export.excel:
+        class: App\Services\ExportExcel
