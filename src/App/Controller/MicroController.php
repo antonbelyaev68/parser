@@ -45,6 +45,7 @@ class MicroController extends Controller
         $codes = explode(",", $codes);
 
         $data = [];
+
         foreach ($codes as $code) {
             $parserMlsmatrix->setZipCode($code);
             $matrixData = $parserMlsmatrix->parse();

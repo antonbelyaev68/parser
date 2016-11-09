@@ -19,21 +19,16 @@ class ParserMlsmatrix extends Parser
     protected $login = 'rencesmi';
     protected $password = '878526';
 
-    protected $isAuth = false;
+    private $page = false;
 
     public function parse()
     {
-        if ($page = $this->auth()) {
-            /** @var NodeElement[] $matrixUrls */
-            $matrixUrls = $page->findAll('xpath', '//div[@id="sec-nav"]/ul/li/a');
-            $matrixUrls[1]->click(); // click on Matrix
-            $this->session->wait(5);
-
-            $names = $this->session->getWindowNames();
-            $this->session->switchToWindow($names[1]); //select new window
-
-            $el = $page->find('named', ['content', 'click here']);
-            $el->click(); //finish auth
+        if (!$this->session) {
+            $this->auth();
+        }
+        if ($this->session) {
+            $this->session->visit("http://fmls.mlsmatrix.com/Matrix/Search/Residential");
+            $page = $this->session->getPage();
 
             /** @var NodeElement[] $residentalUrls */
             $residentalUrls = $page->findAll('xpath', '//li/a');
@@ -92,7 +87,7 @@ class ParserMlsmatrix extends Parser
         $this->createSession();
         $this->session->visit($this->urlLogin);
         $page = $this->session->getPage();
-
+        $this->scrin("login");
         $registerForm = $page->find('named', ['id_or_name', 'FMLSLogin']);
         if (null === $registerForm) {
             throw new \Exception('The element is not found');
@@ -110,9 +105,18 @@ class ParserMlsmatrix extends Parser
         $el = $page->find('named', ['content', 'Logout']);
 
         if ($el instanceof NodeElement) {
-            return $page;
+            /** @var NodeElement[] $matrixUrls */
+            $matrixUrls = $page->findAll('xpath', '//div[@id="sec-nav"]/ul/li/a');
+            $matrixUrls[1]->click(); // click on Matrix
+            $this->session->wait(5);
+
+            $names = $this->session->getWindowNames();
+            $this->session->switchToWindow($names[1]); //select new window
+
+            $el = $page->find('named', ['content', 'click here']);
+            $el->click(); //finish auth
         } else {
-            return false;
+            $this->session = false;
         }
     }
 }
