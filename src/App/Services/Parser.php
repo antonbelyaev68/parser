@@ -38,7 +38,8 @@ abstract class Parser
 
     protected function createSession()
     {
-        $driver = new Selenium2Driver('chrome', null, 'http://192.168.99.100:32773/wd/hub');
+        #$driver = new Selenium2Driver('chrome', null, 'http://192.168.99.100:32773/wd/hub');
+        $driver = new Selenium2Driver('chrome');
         $this->session = new Session($driver);
         $this->session->start();
     }

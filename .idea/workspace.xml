@@ -2,43 +2,44 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e18891a7-4e7a-4fd7-a845-c2b6226c5c8b" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/0-1.png" afterPath="$PROJECT_DIR$/web/0-1.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/0.png" afterPath="$PROJECT_DIR$/web/0.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/1-1.png" afterPath="$PROJECT_DIR$/web/1-1.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/1-2.png" afterPath="$PROJECT_DIR$/web/1-2.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/1-3.png" afterPath="$PROJECT_DIR$/web/1-3.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/1.png" afterPath="$PROJECT_DIR$/web/1.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/10.png" afterPath="$PROJECT_DIR$/web/10.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/11.png" afterPath="$PROJECT_DIR$/web/11.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/12.png" afterPath="$PROJECT_DIR$/web/12.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/13.png" afterPath="$PROJECT_DIR$/web/13.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/14.png" afterPath="$PROJECT_DIR$/web/14.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/15.png" afterPath="$PROJECT_DIR$/web/15.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/16.png" afterPath="$PROJECT_DIR$/web/16.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/17-1.png" afterPath="$PROJECT_DIR$/web/17-1.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/17-2.png" afterPath="$PROJECT_DIR$/web/17-2.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/17.png" afterPath="$PROJECT_DIR$/web/17.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/18.png" afterPath="$PROJECT_DIR$/web/18.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/19.png" afterPath="$PROJECT_DIR$/web/19.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/2.png" afterPath="$PROJECT_DIR$/web/2.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/20.png" afterPath="$PROJECT_DIR$/web/20.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/21.png" afterPath="$PROJECT_DIR$/web/21.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/22.png" afterPath="$PROJECT_DIR$/web/22.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/3.png" afterPath="$PROJECT_DIR$/web/3.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/4.png" afterPath="$PROJECT_DIR$/web/4.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/5-1.png" afterPath="$PROJECT_DIR$/web/5-1.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/5.png" afterPath="$PROJECT_DIR$/web/5.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/6-1.png" afterPath="$PROJECT_DIR$/web/6-1.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/6-2.png" afterPath="$PROJECT_DIR$/web/6-2.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/6.png" afterPath="$PROJECT_DIR$/web/6.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/7.png" afterPath="$PROJECT_DIR$/web/7.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/8-1.png" afterPath="$PROJECT_DIR$/web/8-1.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/8-2.png" afterPath="$PROJECT_DIR$/web/8-2.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/8.png" afterPath="$PROJECT_DIR$/web/8.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/9.png" afterPath="$PROJECT_DIR$/web/9.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/scrin!!!.png" afterPath="$PROJECT_DIR$/web/scrin!!!.png" />
+      <change type="DELETED" beforePath="D:\OpenServer\domains\parser\web\0-1.png" afterPath="" />
+      <change type="DELETED" beforePath="D:\OpenServer\domains\parser\web\0.png" afterPath="" />
+      <change type="DELETED" beforePath="D:\OpenServer\domains\parser\web\1-1.png" afterPath="" />
+      <change type="DELETED" beforePath="D:\OpenServer\domains\parser\web\1-2.png" afterPath="" />
+      <change type="DELETED" beforePath="D:\OpenServer\domains\parser\web\1-3.png" afterPath="" />
+      <change type="DELETED" beforePath="D:\OpenServer\domains\parser\web\1.png" afterPath="" />
+      <change type="DELETED" beforePath="D:\OpenServer\domains\parser\web\10.png" afterPath="" />
+      <change type="DELETED" beforePath="D:\OpenServer\domains\parser\web\11.png" afterPath="" />
+      <change type="DELETED" beforePath="D:\OpenServer\domains\parser\web\12.png" afterPath="" />
+      <change type="DELETED" beforePath="D:\OpenServer\domains\parser\web\13.png" afterPath="" />
+      <change type="DELETED" beforePath="D:\OpenServer\domains\parser\web\14.png" afterPath="" />
+      <change type="DELETED" beforePath="D:\OpenServer\domains\parser\web\15.png" afterPath="" />
+      <change type="DELETED" beforePath="D:\OpenServer\domains\parser\web\16.png" afterPath="" />
+      <change type="DELETED" beforePath="D:\OpenServer\domains\parser\web\17-1.png" afterPath="" />
+      <change type="DELETED" beforePath="D:\OpenServer\domains\parser\web\17-2.png" afterPath="" />
+      <change type="DELETED" beforePath="D:\OpenServer\domains\parser\web\17.png" afterPath="" />
+      <change type="DELETED" beforePath="D:\OpenServer\domains\parser\web\18.png" afterPath="" />
+      <change type="DELETED" beforePath="D:\OpenServer\domains\parser\web\19.png" afterPath="" />
+      <change type="DELETED" beforePath="D:\OpenServer\domains\parser\web\2.png" afterPath="" />
+      <change type="DELETED" beforePath="D:\OpenServer\domains\parser\web\20.png" afterPath="" />
+      <change type="DELETED" beforePath="D:\OpenServer\domains\parser\web\21.png" afterPath="" />
+      <change type="DELETED" beforePath="D:\OpenServer\domains\parser\web\22.png" afterPath="" />
+      <change type="DELETED" beforePath="D:\OpenServer\domains\parser\web\3.png" afterPath="" />
+      <change type="DELETED" beforePath="D:\OpenServer\domains\parser\web\4.png" afterPath="" />
+      <change type="DELETED" beforePath="D:\OpenServer\domains\parser\web\5-1.png" afterPath="" />
+      <change type="DELETED" beforePath="D:\OpenServer\domains\parser\web\5.png" afterPath="" />
+      <change type="DELETED" beforePath="D:\OpenServer\domains\parser\web\6-1.png" afterPath="" />
+      <change type="DELETED" beforePath="D:\OpenServer\domains\parser\web\6-2.png" afterPath="" />
+      <change type="DELETED" beforePath="D:\OpenServer\domains\parser\web\6.png" afterPath="" />
+      <change type="DELETED" beforePath="D:\OpenServer\domains\parser\web\7.png" afterPath="" />
+      <change type="DELETED" beforePath="D:\OpenServer\domains\parser\web\8-1.png" afterPath="" />
+      <change type="DELETED" beforePath="D:\OpenServer\domains\parser\web\8-2.png" afterPath="" />
+      <change type="DELETED" beforePath="D:\OpenServer\domains\parser\web\8.png" afterPath="" />
+      <change type="DELETED" beforePath="D:\OpenServer\domains\parser\web\9.png" afterPath="" />
+      <change type="DELETED" beforePath="D:\OpenServer\domains\parser\web\login.png" afterPath="" />
+      <change type="DELETED" beforePath="D:\OpenServer\domains\parser\web\scrin!!!.png" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docker/Dockerfile" afterPath="$PROJECT_DIR$/docker/Dockerfile" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/App/Services/Parser.php" afterPath="$PROJECT_DIR$/src/App/Services/Parser.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="parser.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -63,7 +64,7 @@
       <file leaf-file-name="index.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/web/index.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
+            <state vertical-scroll-proportion="-0.0">
               <caret line="64" column="33" selection-start-line="64" selection-start-column="33" selection-end-line="64" selection-end-column="33" />
               <folding />
             </state>
@@ -132,8 +133,8 @@
       <file leaf-file-name="Parser.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/App/Services/Parser.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.3046595">
-              <caret line="40" column="82" selection-start-line="40" selection-start-column="82" selection-end-line="40" selection-end-column="82" />
+            <state vertical-scroll-proportion="0.5077658">
+              <caret line="41" column="29" selection-start-line="41" selection-start-column="29" selection-end-line="41" selection-end-column="29" />
               <folding>
                 <element signature="e#32#55#0#PHP" expanded="true" />
               </folding>
@@ -202,7 +203,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
@@ -286,6 +286,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -337,8 +338,8 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-11" y="-11" width="1942" height="1042" extended-state="6" />
-    <editor active="false" />
+    <frame x="-11" y="-11" width="1942" height="1042" extended-state="7" />
+    <editor active="true" />
     <layout>
       <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22083333" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -790,14 +791,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/behat/mink-selenium2-driver/src/Selenium2Driver.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.6714456">
-          <caret line="61" column="0" selection-start-line="61" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/web/index.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -847,10 +840,27 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/behat/mink-selenium2-driver/src/Selenium2Driver.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.34289128">
+          <caret line="74" column="20" selection-start-line="74" selection-start-column="20" selection-end-line="74" selection-end-column="20" />
+          <folding>
+            <marker date="1478202408515" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1478202408515" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1478202408515" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1478202408515" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1478202408515" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1478202408515" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1478202408515" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1478202408515" expanded="true" signature="-1:-1" placeholder="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/App/Services/Parser.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3046595">
-          <caret line="40" column="82" selection-start-line="40" selection-start-column="82" selection-end-line="40" selection-end-column="82" />
+        <state vertical-scroll-proportion="0.5077658">
+          <caret line="41" column="29" selection-start-line="41" selection-start-column="29" selection-end-line="41" selection-end-column="29" />
           <folding>
             <element signature="e#32#55#0#PHP" expanded="true" />
           </folding>
