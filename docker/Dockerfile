@@ -32,6 +32,7 @@ RUN git clone https://github.com/antonbelyaev68/parser.git /var/www/parser
 RUN tree /var/www/
 RUN cd /var/www/parser
 RUN composer --working-dir=/var/www/parser/ install
+RUN chmod -R 777 var/*
 
 ADD apache-config.conf /etc/apache2/sites-enabled/000-default.conf
 
