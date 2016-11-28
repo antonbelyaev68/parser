@@ -7,7 +7,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\RouteCollectionBuilder;
 use Doctrine\Common\Annotations\AnnotationRegistry;
 
-$loader = require __DIR__ . '/../vendor/autoload.php';
+$loader = require __DIR__ . '/vendor/autoload.php';
 AnnotationRegistry::registerLoader(array($loader, 'loadClass'));
 
 class AppKernel extends Kernel
@@ -31,18 +31,18 @@ class AppKernel extends Kernel
     
     public function getCacheDir()
     {
-        return __DIR__.'/../var/cache/'.$this->getEnvironment();
+        return __DIR__.'/var/cache/'.$this->getEnvironment();
     }
 
     public function getLogDir()
     {
-        return __DIR__.'/../var/logs';
+        return __DIR__.'/var/logs';
     }
     
     protected function configureContainer(ContainerBuilder $c, LoaderInterface $loader)
     {
-        $loader->load(__DIR__.'/../app/config/config.yml');
-        $loader->load(__DIR__.'/../app/config/services.yml');
+        $loader->load(__DIR__.'/app/config/config.yml');
+        $loader->load(__DIR__.'/app/config/services.yml');
 
         if (isset($this->bundles['WebProfilerBundle'])) {
             $c->loadFromExtension('web_profiler', array(
@@ -58,15 +58,15 @@ class AppKernel extends Kernel
             $routes->import('@WebProfilerBundle/Resources/config/routing/wdt.xml', '/_wdt');
             $routes->import('@WebProfilerBundle/Resources/config/routing/profiler.xml', '/_profiler');
         }
-        $routes->import(__DIR__.'/../src/App/Controller/', '/', 'annotation');
+        $routes->import(__DIR__.'/src/App/Controller/', '/', 'annotation');
     }
 }
 
 ini_set('max_execution_time', 0);
 set_time_limit(0);
 
-//$kernel = new AppKernel('dev', true);
-$kernel = new AppKernel('prod', false);
+$kernel = new AppKernel('dev', true);
+//$kernel = new AppKernel('prod', false);
 $request = Request::createFromGlobals();
 $response = $kernel->handle($request);
 $response->send();
