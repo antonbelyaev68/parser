@@ -65,8 +65,8 @@ class AppKernel extends Kernel
 ini_set('max_execution_time', 0);
 set_time_limit(0);
 
-$kernel = new AppKernel('dev', true);
-//$kernel = new AppKernel('prod', false);
+//$kernel = new AppKernel('dev', true);
+$kernel = new AppKernel('prod', false);
 $request = Request::createFromGlobals();
 $response = $kernel->handle($request);
 $response->send();
