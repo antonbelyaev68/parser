@@ -1,23 +1,19 @@
 parser:
   build: .
+  dockerfile: Dockerfile
   ports:
     - "8080:80"
-  links:
-    - hub
 
 hub:
   image: selenium/hub
-  expose:
-    - "4444"
   ports:
     - "4444:4444"
-
-firefox:
-  image: selenium/node-firefox
   links:
-    - hub
+    - parser
 
 chrome:
   image: selenium/node-chrome
+  ports:
+    - "5555:5555"
   links:
     - hub

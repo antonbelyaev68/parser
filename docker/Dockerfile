@@ -25,14 +25,16 @@ ENV APACHE_PID_FILE /var/run/apache2.pid
 
 EXPOSE 80
 
-#RUN mkdir /var/www/parser
-#RUN chmod 777 /var/www/parser
-
 RUN git clone https://github.com/antonbelyaev68/parser.git /var/www/parser
 RUN tree /var/www/
 RUN cd /var/www/parser
 RUN composer --working-dir=/var/www/parser/ install
-RUN chmod -R 777 var/*
+
+RUN mkdir /var/www/parser/var
+RUN mkdir /var/www/parser/var/logs
+RUN mkdir /var/www/parser/var/cache
+
+RUN chmod -R 777 /var/www/parser/var/*
 
 ADD apache-config.conf /etc/apache2/sites-enabled/000-default.conf
 
