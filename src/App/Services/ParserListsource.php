@@ -27,7 +27,7 @@ class ParserListsource extends Parser
         $result['M'] = $this->matrixResult['n']; //+
         $this->scrin(0);
         $as = $page->findAll('xpath', '//a');
-
+        #
         foreach ($as as $key => $a) {
             if ($key == 14) {
                 $a->click(); #search properties
@@ -263,7 +263,7 @@ class ParserListsource extends Parser
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         $this->scrin("scrin!!!");
-        #VarDumper::dump($result);
+        #$this->session = false;
 
         return $result;
         #exit;

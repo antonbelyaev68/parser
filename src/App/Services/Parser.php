@@ -38,10 +38,26 @@ abstract class Parser
 
     protected function createSession()
     {
-        #$driver = new Selenium2Driver('chrome', null, 'http://192.168.99.100:32773/wd/hub');
-        $driver = new Selenium2Driver('chrome');
-        $this->session = new Session($driver);
-        $this->session->start();
+        if (!$this->session) {
+            $option = array(
+                'browserName'       => 'chrome',
+                'version'           => '',
+                'platform'          => 'ANY',
+                'browserVersion'    => '',
+                'browser'           => 'chrome',
+                'name'              => 'Behat Test',
+                'deviceOrientation' => 'portrait',
+                'deviceType'        => 'tablet',
+                'selenium-version'  => '3.0.1'
+            );
+
+            $driver = new Selenium2Driver('chrome', $option, 'http://192.168.99.100:4444/wd/hub');
+            #$driver = new Selenium2Driver('chrome', $option);
+            $this->session = new Session($driver);
+            $this->session->start();
+        } else {
+            $this->session->restart();
+        }
     }
 
     protected function scrin($name)
