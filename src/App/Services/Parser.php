@@ -62,7 +62,7 @@ abstract class Parser
 
     protected function scrin($name)
     {
-        file_put_contents($name.".png", $this->session->getScreenshot());
+        #file_put_contents($name.".png", $this->session->getScreenshot());
     }
 
     protected function waitUntilDisabled($object)
