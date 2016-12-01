@@ -1,6 +1,11 @@
+#parser:
+#  build: .
+#  dockerfile: Dockerfile
+#  ports:
+#    - "8080:80"
+
 parser:
-  build: .
-  dockerfile: Dockerfile
+  image: devastator68/docker_parser
   ports:
     - "8080:80"
 
