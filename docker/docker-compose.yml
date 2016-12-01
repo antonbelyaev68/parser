@@ -7,14 +7,21 @@ parser:
 hub:
   image: selenium/hub
   restart: always
+  links:
+    - parser
   ports:
     - "4444:4444"
   expose:
     - "4444"
-  links:
-    - parser
 
-chrome:
+
+chrome1:
+  image: selenium/node-chrome
+  restart: always
+  links:
+    - hub
+
+chrome2:
   image: selenium/node-chrome
   restart: always
   links:
