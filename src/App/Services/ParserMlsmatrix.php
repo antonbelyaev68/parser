@@ -30,50 +30,58 @@ class ParserMlsmatrix extends Parser
             $this->session->visit("http://fmls.mlsmatrix.com/Matrix/Search/Residential");
             $page = $this->session->getPage();
 
-            /** @var NodeElement[] $residentalUrls */
-            $residentalUrls = $page->findAll('xpath', '//li/a');
-            $residentalUrls[9]->mouseOver(); // hover search
-            $residentalUrls[10]->click(); // click on Residental
+            try {
+                /** @var NodeElement[] $residentalUrls */
+                $residentalUrls = $page->findAll('xpath', '//li/a');
+                $residentalUrls[9]->mouseOver(); // hover search
+                $residentalUrls[10]->click(); // click on Residental
 
-            /** @var NodeElement[] $checkboxes */
-            $checkboxes = $page->findAll('named', ['checkbox', 'Fm45_Ctrl16_LB']);
+                /** @var NodeElement[] $checkboxes */
+                $checkboxes = $page->findAll('named', ['checkbox', 'Fm45_Ctrl16_LB']);
 
-            foreach ($checkboxes as $checkbox) {
-                $text = preg_replace("#\D#", "", explode(" ", $checkbox->getOuterHtml())[3]);
-                if (in_array($text, [101, 1027, 1028, 1029, 1031])) {
-                    $checkbox->uncheck();
+                foreach ($checkboxes as $checkbox) {
+                    $text = preg_replace("#\D#", "", explode(" ", $checkbox->getOuterHtml())[3]);
+                    if (in_array($text, [101, 1027, 1028, 1029, 1031])) {
+                        $checkbox->uncheck();
+                    }
+                    if ($text == 104) {
+                        $checkbox->check();
+                        $soldInput = $page->find('named', ['id_or_name', 'FmFm45_Ctrl16_104_Ctrl16_TB']);
+                        $soldInput->setValue("0-180");
+                    }
                 }
-                if ($text == 104) {
-                    $checkbox->check();
-                    $soldInput = $page->find('named', ['id_or_name', 'FmFm45_Ctrl16_104_Ctrl16_TB']);
-                    $soldInput->setValue("0-180");
-                }
+            } catch (\Exception $e) {
+                echo "Can't get search page", $e->getMessage(), "<br>\n", $e->getTraceAsString();
             }
 
             $zipCodeInput = $page->find('named', ['id_or_name', 'Fm45_Ctrl68_TextBox']);
             $zipCodeInput->setValue($this->zipCode);
 
-            $page->clickLink('m_ucSearchButtons_m_lbSearch');
+            try {
+                $page->clickLink('m_ucSearchButtons_m_lbSearch');
 
-            $stats = null;
-            while (empty($stats)) {
-                $stats = $page->find('named', ['id_or_name', 'm_btnStats']);
-                $this->session->wait(1);
-            }
-
-            $page->clickLink('m_btnStats');
-            $page->clickLink('m_lbOldStats');
-
-            $price = $dom = null;
-            $tds = $page->findAll('xpath', '//td');
-            foreach ($tds as $key => $td) {
-                if ($key == 70) {
-                    $price = $td->getText(); #median price
-                    $price = preg_replace("#[^0-9]#", "", $price);
+                $stats = null;
+                while (empty($stats)) {
+                    $stats = $page->find('named', ['id_or_name', 'm_btnStats']);
+                    $this->session->wait(1);
                 }
-                if ($key == 65) {
-                    $dom = $td->getText(); #avg dom
+
+                $page->clickLink('m_btnStats');
+                $page->clickLink('m_lbOldStats');
+
+                $price = $dom = null;
+                $tds = $page->findAll('xpath', '//td');
+                foreach ($tds as $key => $td) {
+                    if ($key == 70) {
+                        $price = $td->getText(); #median price
+                        $price = preg_replace("#[^0-9]#", "", $price);
+                    }
+                    if ($key == 65) {
+                        $dom = $td->getText(); #avg dom
+                    }
                 }
+            } catch (\Exception $e) {
+                echo "Can't parce info  mlsnatrix", $e->getMessage(), "<br>\n", $e->getTraceAsString();
             }
             #$this->session = false;
             return ['p' => $price, 'n' => $dom];
@@ -85,25 +93,34 @@ class ParserMlsmatrix extends Parser
 
     protected function auth()
     {
-        $this->createSession();
-        $this->session->visit($this->urlLogin);
-        $page = $this->session->getPage();
-        $this->scrin("login");
-        $registerForm = $page->find('named', ['id_or_name', 'FMLSLogin']);
-        if (null === $registerForm) {
-            throw new \Exception('The element is not found');
+        try {
+            $this->createSession();
+        } catch (\Exception $e) {
+            echo "Can't create session", $e->getMessage(), "<br>\n", $e->getTraceAsString();
         }
 
-        $loginField = $registerForm->findField('UserName');
-        $passwordField = $registerForm->findField('Password');
-        $loginField->setValue($this->login);
-        $passwordField->setValue($this->password);
+        try {
+            $this->session->visit($this->urlLogin);
+            $page = $this->session->getPage();
+            $this->scrin("login");
+            $registerForm = $page->find('named', ['id_or_name', 'FMLSLogin']);
+            if (null === $registerForm) {
+                throw new \Exception('The element is not found');
+            }
 
-        $loginButtons = $registerForm->findAll('xpath', "//input");
-        $loginButton = array_pop($loginButtons);
-        $loginButton->click();
+            $loginField = $registerForm->findField('UserName');
+            $passwordField = $registerForm->findField('Password');
+            $loginField->setValue($this->login);
+            $passwordField->setValue($this->password);
 
-        $el = $page->find('named', ['content', 'Logout']);
+            $loginButtons = $registerForm->findAll('xpath', "//input");
+            $loginButton = array_pop($loginButtons);
+            $loginButton->click();
+
+            $el = $page->find('named', ['content', 'Logout']);
+        } catch (\Exception $e) {
+            echo "Can't login mlsnatrix", $e->getMessage(), "<br>\n", $e->getTraceAsString();
+        }
 
         if ($el instanceof NodeElement) {
             /** @var NodeElement[] $matrixUrls */
